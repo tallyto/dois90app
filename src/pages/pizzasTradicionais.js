@@ -1,0 +1,13 @@
+import React, { Component } from 'react';
+
+import { View , Text} from 'react-native';
+
+// import { Container } from './styles';
+
+export default class PizzasTradicionais extends Component {
+  render() {
+    return <View>
+        <Text>Pizzas Tradicionais</Text>
+    </View>;
+  }
+}
