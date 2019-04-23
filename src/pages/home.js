@@ -1,6 +1,6 @@
 import React , {Component}from "react";
 
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity , ScrollView } from "react-native";
 
 class HomeScreen extends Component {
   static navigationOptions = {
@@ -13,6 +13,7 @@ class HomeScreen extends Component {
         <View style={styles.logoView}>
           <Image style={styles.logoImg} source={require("../img/logo.jpg")} />
         </View>
+        <ScrollView>
 
         <TouchableOpacity
           onPress={() => {
@@ -53,6 +54,7 @@ class HomeScreen extends Component {
             <Text style={styles.textButton}>Localização</Text>
           </View>
         </TouchableOpacity>
+        </ScrollView>
       </View>
     );
   }
