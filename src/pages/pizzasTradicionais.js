@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 
-import { View, Text, Button, FlatList,RefreshControl } from "react-native";
+import { View, Text, Button, FlatList, RefreshControl } from "react-native";
 
 import AsyncStorage from "@react-native-community/async-storage";
 
 import api from "../services/api";
-// import { Container } from './styles';
 
 export default class PizzasTradicionais extends Component {
   state = {
@@ -17,17 +16,35 @@ export default class PizzasTradicionais extends Component {
     this.setState({ refreshing: true });
     this.fazerRequisicao();
     this.setState({ refreshing: false });
-   
   };
 
   async fazerRequisicao() {
-    const response = await api.get("/api/PizzasTradicionais");
-    const dados = response.data;
-    await AsyncStorage.setItem(
-      "@pizzasTradicionais",
-      JSON.stringify(dados)
-    );
-    this.setState({ dados: dados });
+    try {
+      const response = await api.get("/api/PizzasTradicionais");
+      const dados = response.data;
+
+      const value = await AsyncStorage.getItem("@pizzasTradicionais");
+
+      await AsyncStorage.setItem("@aux", JSON.stringify(dados));
+      const aux = await AsyncStorage.getItem("@aux");
+
+      if (value == null) {
+        await AsyncStorage.setItem(
+          "@pizzasTradicionais",
+          JSON.stringify(dados)
+        );
+        this.setState({ dados: dados });
+      } else if (value.length != aux.length) {
+        await AsyncStorage.setItem(
+          "@pizzasTradicionais",
+          JSON.stringify(dados)
+        );
+        this.setState({ dados: dados });
+      }
+    } catch (e) {
+      // saving error
+      alert(e);
+    }
   }
 
   async componentDidMount() {
@@ -37,13 +54,7 @@ export default class PizzasTradicionais extends Component {
         this.setState({ dados: JSON.parse(value) });
       } else {
         try {
-          const response = await api.get("/api/PizzasTradicionais");
-          const dados = response.data;
-          await AsyncStorage.setItem(
-            "@pizzasTradicionais",
-            JSON.stringify(dados)
-          );
-          this.setState({ dados: dados });
+          this.fazerRequisicao();
         } catch (e) {
           // saving error
           alert(e);
