@@ -9,6 +9,10 @@ import api from "../services/api";
 import Page from "./page";
 
 export default class PizzasEspeciais extends Component {
+  static navigationOptions = {
+    title: "Pizzas Especiais"
+  };
+
   state = {
     dados: [],
     refreshing: false
@@ -41,7 +45,7 @@ export default class PizzasEspeciais extends Component {
           await AsyncStorage.setItem("@pizzasEspeciais", JSON.stringify(dados));
           this.setState({ dados: dados });
           alert("Dados atualizados");
-        }else{
+        } else {
           alert("Dados atualizados");
         }
       } else {

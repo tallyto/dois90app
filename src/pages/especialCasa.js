@@ -9,6 +9,10 @@ import api from "../services/api";
 import Page from "./page";
 
 export default class especialCasa extends Component {
+  static navigationOptions = {
+    title: "Especialidades da Casa"
+  };
+
   state = {
     dados: [],
     refreshing: false

@@ -9,6 +9,10 @@ import api from "../services/api";
 import Page from "./page";
 
 export default class PizzasTradicionais extends Component {
+  static navigationOptions = {
+    title: "Pizzas Tradicionais"
+  };
+
   state = {
     dados: [],
     refreshing: false

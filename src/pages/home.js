@@ -52,9 +52,10 @@ class HomeScreen extends Component {
           </TouchableOpacity>
 
           <TouchableOpacity
-          onPress={() => {
-            this.props.navigation.navigate("PizzasNobres");
-          }}>
+            onPress={() => {
+              this.props.navigation.navigate("PizzasNobres");
+            }}
+          >
             <View style={styles.buttonView}>
               <Text style={styles.textButton}>Pizzas Nobres</Text>
             </View>

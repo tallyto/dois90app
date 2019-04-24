@@ -9,6 +9,10 @@ import api from "../services/api";
 import Page from "./page";
 
 export default class PizzasNobres extends Component {
+  static navigationOptions = {
+    title: "Pizzas Nobres"
+  };
+
   state = {
     dados: [],
     refreshing: false
@@ -32,17 +36,11 @@ export default class PizzasNobres extends Component {
         const auxNobres = await AsyncStorage.getItem("@auxNobres");
 
         if (value == null) {
-          await AsyncStorage.setItem(
-            "@pizzasNobres",
-            JSON.stringify(dados)
-          );
+          await AsyncStorage.setItem("@pizzasNobres", JSON.stringify(dados));
           this.setState({ dados: dados });
           alert("Dados atualizados");
         } else if (value.length != auxNobres.length) {
-          await AsyncStorage.setItem(
-            "@pizzasNobres",
-            JSON.stringify(dados)
-          );
+          await AsyncStorage.setItem("@pizzasNobres", JSON.stringify(dados));
           this.setState({ dados: dados });
           alert("Dados atualizados");
         } else {

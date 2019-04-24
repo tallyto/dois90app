@@ -2,19 +2,11 @@ import React, { Component } from "react";
 
 import { StyleSheet, Text, View, Image } from "react-native";
 
-// import { Container } from './styles';
-
 export default class headerPizza extends Component {
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.viewPrecos}>
-          <View style={styles.viewImage}>
-            <Image style={styles.image} source={require("../img/pizzaP.png")} />
-            <Text>Pizza Pequena </Text>
-            <Text>3 Fatias R$ 25</Text>
-          </View>
-
           <View style={styles.viewImage}>
             <Image style={styles.image} source={require("../img/pizzaM.png")} />
             <Text>Pizza Média </Text>
