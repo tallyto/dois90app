@@ -1,27 +1,30 @@
 import { createStackNavigator, createAppContainer } from "react-navigation";
 
 import HomeScreen from "./pages/home";
-import PizzasTradicionais from './pages/pizzasTradicionais';
-import PizzasEspeciais from './pages/pizzasEspeciais';
+import PizzasTradicionais from "./pages/pizzasTradicionais";
+import PizzasEspeciais from "./pages/pizzasEspeciais";
+import EspecialCasa from "./pages/especialCasa";
 
 const AppNavigator = createStackNavigator(
   {
     Home: HomeScreen,
     PizzasTradicionais: PizzasTradicionais,
-    PizzasEspeciais: PizzasEspeciais
+    PizzasEspeciais: PizzasEspeciais,
+    EspecialCasa: EspecialCasa
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: "Home",
     /* The header config from HomeScreen is now here */
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: '#231F20',
+        backgroundColor: "#231F20"
       },
-      headerTintColor: '#fff',
+      headerTintColor: "#fff",
       headerTitleStyle: {
-        fontWeight: 'normal',
-      },
-    },
-  });
+        fontWeight: "normal"
+      }
+    }
+  }
+);
 
 export default createAppContainer(AppNavigator);

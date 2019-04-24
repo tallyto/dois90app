@@ -23,29 +23,29 @@ export default class PizzasEspeciais extends Component {
   async fazerRequisicao() {
     try {
       const response = await api.get("/api/pizzasEspeciais");
-      if(response.ok){
+      if (response.ok) {
         const dados = response.data;
 
         const value = await AsyncStorage.getItem("@pizzasEspeciais");
-  
+
         await AsyncStorage.setItem("@auxEspeciais", JSON.stringify(dados));
         const auxEspeciais = await AsyncStorage.getItem("@auxEspeciais");
-  
+
         if (value == null) {
-          await AsyncStorage.setItem(
-            "@pizzasEspeciais",
-            JSON.stringify(dados)
-          );
+          //Não ha dados na memória interna do celular
+          await AsyncStorage.setItem("@pizzasEspeciais", JSON.stringify(dados));
           this.setState({ dados: dados });
+          alert("Dados atualizados");
         } else if (value.length != auxEspeciais.length) {
-          await AsyncStorage.setItem(
-            "@pizzasEspeciais",
-            JSON.stringify(dados)
-          );
+          //Houve modificação no banco de dados
+          await AsyncStorage.setItem("@pizzasEspeciais", JSON.stringify(dados));
           this.setState({ dados: dados });
+          alert("Dados atualizados");
+        }else{
+          alert("Dados atualizados");
         }
-      }else{
-        alert("SEM INTERNET")
+      } else {
+        alert("SEM INTERNET");
       }
     } catch (e) {
       // saving error

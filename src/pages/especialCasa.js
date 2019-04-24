@@ -8,7 +8,7 @@ import api from "../services/api";
 
 import Page from "./page";
 
-export default class PizzasTradicionais extends Component {
+export default class especialCasa extends Component {
   state = {
     dados: [],
     refreshing: false
@@ -22,27 +22,23 @@ export default class PizzasTradicionais extends Component {
 
   async fazerRequisicao() {
     try {
-      const response = await api.get("/api/PizzasTradicionais");
+      const response = await api.get("/api/especialCasa");
       if (response.ok) {
         const dados = response.data;
 
-        const value = await AsyncStorage.getItem("@pizzasTradicionais");
+        const value = await AsyncStorage.getItem("@especialCasa");
 
-        await AsyncStorage.setItem("@auxTradicionais", JSON.stringify(dados));
-        const auxTradicionais = await AsyncStorage.getItem("@auxTradicionais");
+        await AsyncStorage.setItem("@especialCasaAux", JSON.stringify(dados));
+        const especialCasaAux = await AsyncStorage.getItem("@especialCasaAux");
 
         if (value == null) {
-          await AsyncStorage.setItem(
-            "@pizzasTradicionais",
-            JSON.stringify(dados)
-          );
+          //Não ha dados na memória interna do celular
+          await AsyncStorage.setItem("@especialCasa", JSON.stringify(dados));
           this.setState({ dados: dados });
           alert("Dados atualizados");
-        } else if (value.length != auxTradicionais.length) {
-          await AsyncStorage.setItem(
-            "@pizzasTradicionais",
-            JSON.stringify(dados)
-          );
+        } else if (value.length != especialCasaAux.length) {
+          //Houve modificação no banco de dados
+          await AsyncStorage.setItem("@especialCasa", JSON.stringify(dados));
           this.setState({ dados: dados });
           alert("Dados atualizados");
         } else {
@@ -59,7 +55,7 @@ export default class PizzasTradicionais extends Component {
 
   async componentDidMount() {
     try {
-      const value = await AsyncStorage.getItem("@pizzasTradicionais");
+      const value = await AsyncStorage.getItem("@especialCasa");
       if (value !== null) {
         this.setState({ dados: JSON.parse(value) });
       } else {
