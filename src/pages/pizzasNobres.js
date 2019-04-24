@@ -8,7 +8,7 @@ import api from "../services/api";
 
 import Page from "./page";
 
-export default class PizzasTradicionais extends Component {
+export default class PizzasNobres extends Component {
   state = {
     dados: [],
     refreshing: false
@@ -22,25 +22,25 @@ export default class PizzasTradicionais extends Component {
 
   async fazerRequisicao() {
     try {
-      const response = await api.get("/api/pizzasTradicionais");
+      const response = await api.get("/api/pizzasNobres");
       if (response.ok) {
         const dados = response.data;
 
-        const value = await AsyncStorage.getItem("@pizzasTradicionais");
+        const value = await AsyncStorage.getItem("@pizzasNobres");
 
-        await AsyncStorage.setItem("@auxTradicionais", JSON.stringify(dados));
-        const auxTradicionais = await AsyncStorage.getItem("@auxTradicionais");
+        await AsyncStorage.setItem("@auxNobres", JSON.stringify(dados));
+        const auxNobres = await AsyncStorage.getItem("@auxNobres");
 
         if (value == null) {
           await AsyncStorage.setItem(
-            "@pizzasTradicionais",
+            "@pizzasNobres",
             JSON.stringify(dados)
           );
           this.setState({ dados: dados });
           alert("Dados atualizados");
-        } else if (value.length != auxTradicionais.length) {
+        } else if (value.length != auxNobres.length) {
           await AsyncStorage.setItem(
-            "@pizzasTradicionais",
+            "@pizzasNobres",
             JSON.stringify(dados)
           );
           this.setState({ dados: dados });
@@ -59,7 +59,7 @@ export default class PizzasTradicionais extends Component {
 
   async componentDidMount() {
     try {
-      const value = await AsyncStorage.getItem("@pizzasTradicionais");
+      const value = await AsyncStorage.getItem("@pizzasNobres");
       if (value !== null) {
         this.setState({ dados: JSON.parse(value) });
       } else {
