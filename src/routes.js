@@ -2,11 +2,13 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 
 import HomeScreen from "./pages/home";
 import PizzasTradicionais from './pages/pizzasTradicionais';
+import PizzasEspeciais from './pages/pizzasEspeciais';
 
 const AppNavigator = createStackNavigator(
   {
     Home: HomeScreen,
-    PizzasTradicionais: PizzasTradicionais
+    PizzasTradicionais: PizzasTradicionais,
+    PizzasEspeciais: PizzasEspeciais
   },
   {
     initialRouteName: 'Home',

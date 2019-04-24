@@ -8,7 +8,7 @@ import api from "../services/api";
 
 import Page from "./page";
 
-export default class PizzasTradicionais extends Component {
+export default class PizzasEspeciais extends Component {
   state = {
     dados: [],
     refreshing: false
@@ -22,23 +22,23 @@ export default class PizzasTradicionais extends Component {
 
   async fazerRequisicao() {
     try {
-      const response = await api.get("/api/PizzasTradicionais");
+      const response = await api.get("/api/pizzasEspeciais");
       const dados = response.data;
 
-      const value = await AsyncStorage.getItem("@pizzasTradicionais");
+      const value = await AsyncStorage.getItem("@pizzasEspeciais");
 
-      await AsyncStorage.setItem("@auxTradicionais", JSON.stringify(dados));
-      const auxTradicionais = await AsyncStorage.getItem("@auxTradicionais");
+      await AsyncStorage.setItem("@auxEspeciais", JSON.stringify(dados));
+      const auxEspeciais = await AsyncStorage.getItem("@auxEspeciais");
 
       if (value == null) {
         await AsyncStorage.setItem(
-          "@pizzasTradicionais",
+          "@pizzasEspeciais",
           JSON.stringify(dados)
         );
         this.setState({ dados: dados });
-      } else if (value.length != auxTradicionais.length) {
+      } else if (value.length != auxEspeciais.length) {
         await AsyncStorage.setItem(
-          "@pizzasTradicionais",
+          "@pizzasEspeciais",
           JSON.stringify(dados)
         );
         this.setState({ dados: dados });
@@ -51,7 +51,7 @@ export default class PizzasTradicionais extends Component {
 
   async componentDidMount() {
     try {
-      const value = await AsyncStorage.getItem("@pizzasTradicionais");
+      const value = await AsyncStorage.getItem("@pizzasEspeciais");
       if (value !== null) {
         this.setState({ dados: JSON.parse(value) });
       } else {
