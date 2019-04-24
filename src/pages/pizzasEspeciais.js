@@ -23,25 +23,29 @@ export default class PizzasEspeciais extends Component {
   async fazerRequisicao() {
     try {
       const response = await api.get("/api/pizzasEspeciais");
-      const dados = response.data;
+      if(response.ok){
+        const dados = response.data;
 
-      const value = await AsyncStorage.getItem("@pizzasEspeciais");
-
-      await AsyncStorage.setItem("@auxEspeciais", JSON.stringify(dados));
-      const auxEspeciais = await AsyncStorage.getItem("@auxEspeciais");
-
-      if (value == null) {
-        await AsyncStorage.setItem(
-          "@pizzasEspeciais",
-          JSON.stringify(dados)
-        );
-        this.setState({ dados: dados });
-      } else if (value.length != auxEspeciais.length) {
-        await AsyncStorage.setItem(
-          "@pizzasEspeciais",
-          JSON.stringify(dados)
-        );
-        this.setState({ dados: dados });
+        const value = await AsyncStorage.getItem("@pizzasEspeciais");
+  
+        await AsyncStorage.setItem("@auxEspeciais", JSON.stringify(dados));
+        const auxEspeciais = await AsyncStorage.getItem("@auxEspeciais");
+  
+        if (value == null) {
+          await AsyncStorage.setItem(
+            "@pizzasEspeciais",
+            JSON.stringify(dados)
+          );
+          this.setState({ dados: dados });
+        } else if (value.length != auxEspeciais.length) {
+          await AsyncStorage.setItem(
+            "@pizzasEspeciais",
+            JSON.stringify(dados)
+          );
+          this.setState({ dados: dados });
+        }
+      }else{
+        alert("SEM INTERNET")
       }
     } catch (e) {
       // saving error
