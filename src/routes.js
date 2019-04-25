@@ -5,6 +5,7 @@ import PizzasTradicionais from "./pages/pizzasTradicionais";
 import PizzasEspeciais from "./pages/pizzasEspeciais";
 import EspecialCasa from "./pages/especialCasa";
 import PizzasNobres from "./pages/pizzasNobres";
+import Promotion from './pages/Promotion';
 
 const AppNavigator = createStackNavigator(
   {
@@ -12,7 +13,8 @@ const AppNavigator = createStackNavigator(
     PizzasTradicionais: PizzasTradicionais,
     PizzasEspeciais: PizzasEspeciais,
     EspecialCasa: EspecialCasa,
-    PizzasNobres: PizzasNobres
+    PizzasNobres: PizzasNobres,
+    Promotion: Promotion
   },
   {
     initialRouteName: "Home",

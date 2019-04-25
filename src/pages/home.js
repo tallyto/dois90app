@@ -61,7 +61,11 @@ class HomeScreen extends Component {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate("Promotion");
+            }}
+          >
             <View style={styles.buttonView}>
               <Text style={styles.textButton}>Promoções</Text>
             </View>
@@ -85,7 +89,7 @@ const styles = StyleSheet.create({
     width: "100%"
   },
   logoView: {
-    height: "30%",
+    height: "20%",
     width: "100%",
     backgroundColor: "#231F20"
   },
