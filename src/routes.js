@@ -5,7 +5,7 @@ import PizzasTradicionais from "./pages/pizzasTradicionais";
 import PizzasEspeciais from "./pages/pizzasEspeciais";
 import EspecialCasa from "./pages/especialCasa";
 import PizzasNobres from "./pages/pizzasNobres";
-import Promotion from './pages/Promotion';
+import Promotion from "./pages/Promotion";
 
 const AppNavigator = createStackNavigator(
   {
