@@ -10,7 +10,7 @@ import Page from "./page";
 
 export default class especialCasa extends Component {
   static navigationOptions = {
-    title: "Especialidades da Casa"
+    title: "Da Casa"
   };
 
   state = {

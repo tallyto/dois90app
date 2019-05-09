@@ -10,7 +10,7 @@ import Page from "./page";
 
 export default class PizzasNobres extends Component {
   static navigationOptions = {
-    title: "Pizzas Nobres"
+    title: "Nobres"
   };
 
   state = {
